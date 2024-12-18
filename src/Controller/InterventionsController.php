@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Interventions;
 use App\Entity\Partner;
+use App\Entity\RegistrationInterventions;
 use App\Form\InterventionsType;
 use App\Repository\InterventionsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -76,6 +77,25 @@ class InterventionsController extends AbstractController
         return $this->redirectToRoute('app_interventions', [
             'controller_name' => 'InterventionsController',
             'interventions' => $interventions,
+        ]);
+    }
+
+    #[Route('/intervention/{id}', name: 'app_intervention_details')]
+    public function interventionsDetails($id, EntityManagerInterface $entityManagerInterface): Response
+    {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $partner = $this->getUser()->getPartner();
+        $interventions = $partner->getInterventions();
+        $interventions = $entityManagerInterface->getRepository(Interventions::class)->find($id);
+        $participants = $entityManagerInterface->getRepository(RegistrationInterventions::class)->findBy(['interventions'=> $interventions]);
+
+
+        return $this->render('interventions/interventiondetails.html.twig', [
+            'interventions' => $interventions,
+            'id'=> $id,
+            'participants'=> $participants,
         ]);
     }
 }

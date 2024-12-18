@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Village des Solutions (Afpa Chatellerault) - Interventions Details
+{% endblock %}
+
+{% block body %}
+
+	<section>
+		<div class="pt-[5%]">
+			{% if participants is not empty %}
+				{% for participant in participants %}
+					<div>
+						{{participant.firstname}}
+						{{participant.lastname}}
+					</div>
+					{{participant.email}}
+					{{participant.phone}}
+				{% endfor %}
+			{% else %}
+				<p>Aucun particpants actuellement pour cette intervention</p>
+			{% endif %}
+		</div>
+	</section>
+{% endblock %}
