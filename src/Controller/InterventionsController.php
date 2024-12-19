@@ -98,4 +98,31 @@ class InterventionsController extends AbstractController
             'participants'=> $participants,
         ]);
     }
+
+    #[Route('/delete/participant/{id}', name: 'app_delete_participant')]
+    public function deleteParticipant(RegistrationInterventions $registration, EntityManagerInterface $entity): Response
+    {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        // $partner = $this->getUser()->getPartner();
+        $intervention = $registration->getInterventions();
+        if($intervention) {
+            $actualPlaces = $intervention->getPlaces();
+            $intervention->setPlaces($actualPlaces + 1);
+            $entity->persist($intervention);
+        }
+        
+
+        $entity->remove($registration);
+        $entity->flush();
+
+        $this->addFlash("delete", "Suppression du participant réussit !");
+
+
+        return $this->redirectToRoute('app_interventions', [
+            'controller_name' => 'InterventionsController',
+            'intervention' => $intervention,
+        ]);
+    }
 }

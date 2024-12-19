@@ -31,6 +31,9 @@
 							<th scope="col" class="px-6 py-3">
 								Contacter
 							</th>
+							<th scope="col" class="px-6 py-3">
+								Editer
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,7 +55,7 @@
 									<a href="#"><img src="{{asset('images/contactlogo.png')}}" class="h-8" alt="contact logo"></a>
 								</td>
 								<td>
-								<a href="#">
+								<a href="{{path('app_delete_participant', {id: participant.id })}}">
 											<button class="rounded-full group flex items-center justify-center focus-within:outline-red-500">
 												<svg width="34" height="34" viewbox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<circle class="fill-red-50 transition-all duration-500 group-hover:fill-red-400" cx="17" cy="17" r="17" fill=""/>
