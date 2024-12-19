@@ -22,7 +22,15 @@ class RegistrationInterventionsController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+
+            $intervention = $registration->getInterventions();
+
+            if($intervention->getPlaces() > 0) {
+                $intervention->setPlaces($intervention->getPlaces() - 1 );
+            }
+
             $entity->persist($registration);
+            $entity->persist($intervention);
             $entity->flush();
 
             $this->addFlash("registersuccess", "Inscription réalisé avec succés ! Vous allez recevoir un email de confirmation");
