@@ -37,7 +37,7 @@ class Interventions
     /**
      * @var Collection<int, RegistrationInterventions>
      */
-    #[ORM\OneToMany(targetEntity: RegistrationInterventions::class, mappedBy: 'interventions')]
+    #[ORM\OneToMany(targetEntity: RegistrationInterventions::class, mappedBy: 'interventions', orphanRemoval: true)]
     private Collection $registrationInterventions;
 
     public function __construct()
