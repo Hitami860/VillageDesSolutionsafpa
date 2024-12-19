@@ -5,20 +5,62 @@
 
 {% block body %}
 
-	<section>
-		<div class="pt-[5%]">
-			{% if participants is not empty %}
-				{% for participant in participants %}
-					<div>
-						{{participant.firstname}}
-						{{participant.lastname}}
-					</div>
-					{{participant.email}}
-					{{participant.phone}}
-				{% endfor %}
-			{% else %}
-				<p>Aucun particpants actuellement pour cette intervention</p>
-			{% endif %}
-		</div>
+	<section class="pt-[8%] container mx-auto pb-[18%]">
+
+<h2 class="text-center text-3xl font-semibold mb-[4%]">{{interventions.title}}</h2>
+<h2 class=" font-semibold pb-6">Places restantes : {{interventions.places}}</h2>
+
+
+		{% if participants is not empty %}
+			<div class="relative overflow-x-auto shadow-lg rounded-lg">
+				<table class="w-full text-sm  text-left rtl:text-right text-gray-500 dark:text-gray-400">
+					<thead class="text-xs text-gray-700 uppercase bg-[#b5d997] dark:bg-gray-700 dark:text-gray-400">
+						<tr>
+							<th scope="col" class="px-6 py-3">
+								Prénom
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Nom
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Email
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Téléphone
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Contacter
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for participant in participants %}
+							<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+								<td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+									{{participant.firstname}}
+								</td>
+								<td class="px-6 py-4">
+									{{participant.lastname}}
+								</td>
+								<td class="px-6 py-4">
+									{{participant.email}}
+								</td>
+								<td class="px-6 py-4">
+									+33{{participant.phone}}
+								</td>
+								<td class="px-6 py-4">
+									<a href="#"><img src="{{asset('images/contactlogo.png')}}" class="h-8" alt="contact logo"></a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% else %}
+			<div class="mt-6 bg-yellow-100 shadow-lg border-yellow-500 text-yellow-700 p-4">
+				Aucun participant inscrit pour cette intervention
+			</div>
+		{% endif %}
+
 	</section>
 {% endblock %}
