@@ -20,10 +20,16 @@ class RegistrationInterventionsType extends AbstractType
             ->add('phone')
             ->add('interventions', EntityType::class, [
                 'class' => Interventions::class,
-                'choice_label' => 'title',
+                'choice_label' => function (Interventions $intervention) {
+                    $startDate = $intervention->getDate()->format('d-m-Y H:i');
+                    $endDate = $intervention->getEnddate() ? $intervention->getEnddate()->format('H:i') : ' ';
+                    return $intervention->getTitle() . ' (' . $startDate . ' - ' . $endDate . ')';
+                },
             ])
         ;
     }
+    
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
