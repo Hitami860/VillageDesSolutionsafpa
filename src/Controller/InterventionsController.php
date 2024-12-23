@@ -17,7 +17,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class InterventionsController extends AbstractController
 {
-,     public function __construct(
+
+    public function __construct(
         private readonly EntityManagerInterface $entityManagerInterface,
     ) {}
 
