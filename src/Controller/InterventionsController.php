@@ -17,8 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class InterventionsController extends AbstractController
 {
-
-    public function __construct(
+,     public function __construct(
         private readonly EntityManagerInterface $entityManagerInterface,
     ) {}
 
@@ -46,6 +45,8 @@ class InterventionsController extends AbstractController
             $this->entityManagerInterface->flush();
 
             $this->addFlash("success", "Ajout de l'intervention réussie !");
+
+            return $this->redirectToRoute('app_interventions');
         }
 
         return $this->render('interventions/interventions.html.twig', [

@@ -27,7 +27,11 @@ class RegistrationInterventionsController extends AbstractController
 
             if($intervention->getPlaces() > 0) {
                 $intervention->setPlaces($intervention->getPlaces() - 1 );
+            } else {
+                $this->addFlash("registererror", "Désolé, il n'y a plus de places disponibles pour cette interventi");
+                return $this->redirectToRoute('app_registration_interventions'); // Vous pouvez rediriger si nécessaire
             }
+    
 
             $entity->persist($registration);
             $entity->persist($intervention);
