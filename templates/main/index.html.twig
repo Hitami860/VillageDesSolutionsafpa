@@ -161,7 +161,7 @@
 					{% endif %}
 
 					<a href="#">
-						<div class="hover:bg-{{color}}  transition duration-300 ease-in-out relative flex flex-col my-6 bg-white shadow-md border border-{{color}} rounded-lg">
+						<div class="hover:bg-{{color}} min-h-[100px] transition duration-300 ease-in-out relative flex flex-col my-6 bg-white shadow-md border border-{{color}} rounded-lg">
 							<div class="p-4 ">
 								<h5 class=" hover:text-white mb-2 text-{{color}} font-semibold text-center uppercase">{{problema.name}}</h5>
 								<p class="hover:text-white text-{{color}} leading-normal font-light">{{problema.description}}</p>
@@ -170,11 +170,13 @@
 					</a>
 				{% endfor %}
 			</div>
-			<div class="flex items-center border rounded-xl border-gray-800 py-3 px-4">
-				<img src="{{asset('images/lumiere.png')}}" class="h-8 mr-4" alt="lumiere image">
-				<p class="text-gray-700 font-semibold text-center text-xl">
-					La mission principale du Village sera d'apporter des réponses à ces freins afin d'améliorer les parcours d'insertion des publics sur le territoire.
-				</p>
+			<div class="pt-[3%] pb-[2%]">
+				<div class="flex items-center border rounded-xl border-gray-800 py-3 px-4">
+					<img src="{{asset('images/lumiere.png')}}" class="h-8 mr-4" alt="lumiere image">
+					<p class="text-gray-700 font-semibold text-center text-xl">
+						La mission principale du Village sera d'apporter des réponses à ces freins afin d'améliorer les parcours d'insertion des publics sur le territoire.
+					</p>
+				</div>
 			</div>
 
 		</div>
