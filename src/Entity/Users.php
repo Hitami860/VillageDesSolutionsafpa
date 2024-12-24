@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert; // Importation des contraintes de validation
 use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +37,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Partner $partner = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\Length(min: 10, maxMessage: 'Le numéro de compte doit contenir 10 chiffres.')] 
+    #[Assert\Length(max: 10, maxMessage: 'Le numéro de compte ne doit pas dépasser 10 chiffres.')] 
+    #[Assert\Regex(pattern: '/^\d+$/', message: 'Le numéro de compte doit contenir uniquement des chiffres.')]
     private ?string $accountNumber = null;
 
     public function getId(): ?int
