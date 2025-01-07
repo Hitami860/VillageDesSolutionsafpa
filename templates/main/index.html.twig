@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Village des Solutions (Afpa Chatellerault) - Accueil
+{% block title %}Village des Solutions (Châtellerault) - Accueil
 {% endblock %}
 
 {% block body %}
+
+	<section class="flex flex-col bg-contain bg-no-repeat md:bg-no-repeat bg-cover py-96 relative" style="background-image:url('{{asset('images/bgvillageds.jpeg')}}'); background-position: center center; background-size: cover;">
+    <div class="absolute inset-0 bg-black opacity-50 transition-opacity duration-500"></div>
+    <div class="relative z-10 flex justify-center items-center text-center text-white">
+        <h1 class="text-5xl font-bold font-serif text-shadow-lg ">Le Village des Solutions (Châtellerault)</h1>
+    </div>
+</section>
+
 
 	<section class="bg-gray-100 py-[10%]">
 		<div class="container mx-auto px-6">
